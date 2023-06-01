@@ -72,3 +72,17 @@ else
     echo "Failed to create MySQL Docker container. Exiting..."
     exit 1
 fi
+
+# Ask the user if they want to start the container
+read -p "Do you want to start the container? (y/n): " choice
+if [ "$choice" = "y" ] || [ "$choice" = "Y" ]; then
+    docker start $container_name
+    if [ $? -eq 0 ]; then
+        echo "Container started successfully."
+    else
+        echo "Failed to start the container. Exiting..."
+        exit 1
+    fi
+else
+    echo "Container created but not started. You can start it later using 'docker start $container_name'."
+fi
