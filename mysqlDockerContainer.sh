@@ -64,7 +64,7 @@ read -sp "Enter the MySQL root password: " mysql_root_password
 echo
 
 # Create a MySQL Docker container
-docker run --name $container_name -e MYSQL_ROOT_PASSWORD=$mysql_root_password -d mysql:5.7
+docker run --name $container_name -p 3306:3306 -e MYSQL_ROOT_PASSWORD=$mysql_root_password -d mysql
 
 if [ $? -eq 0 ]; then
     echo "MySQL Docker container created successfully."
@@ -72,4 +72,3 @@ else
     echo "Failed to create MySQL Docker container. Exiting..."
     exit 1
 fi
-
